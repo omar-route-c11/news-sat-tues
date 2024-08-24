@@ -20,8 +20,8 @@ class AppTheme {
       centerTitle: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(50),
-          right: Radius.circular(50),
+          left: Radius.circular(32),
+          right: Radius.circular(32),
         ),
       ),
     ),

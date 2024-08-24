@@ -4,37 +4,48 @@ import 'package:news/category/category_item.dart';
 import 'package:news/category/category_model.dart';
 
 class CategoriesGrid extends StatelessWidget {
-  const CategoriesGrid({super.key});
+  const CategoriesGrid({
+    super.key,
+    required this.onCategorySelected,
+  });
+
+  final void Function(CategoryModel) onCategorySelected;
 
   @override
   Widget build(BuildContext context) {
     const List<CategoryModel> categories = [
       CategoryModel(
+        id: 'sports',
         name: 'Sports',
         imageName: 'ball',
         color: Color(0xFFC91C22),
       ),
       CategoryModel(
+        id: 'sports',
         name: 'Sports',
         imageName: 'ball',
         color: Color(0xFFC91C22),
       ),
       CategoryModel(
+        id: 'sports',
         name: 'Sports',
         imageName: 'ball',
         color: Color(0xFFC91C22),
       ),
       CategoryModel(
+        id: 'sports',
         name: 'Sports',
         imageName: 'ball',
         color: Color(0xFFC91C22),
       ),
       CategoryModel(
+        id: 'sports',
         name: 'Sports',
         imageName: 'ball',
         color: Color(0xFFC91C22),
       ),
       CategoryModel(
+        id: 'sports',
         name: 'Sports',
         imageName: 'ball',
         color: Color(0xFFC91C22),
@@ -63,10 +74,16 @@ class CategoriesGrid extends StatelessWidget {
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 24,
               ),
-              itemBuilder: (_, index) => CategoryItem(
-                category: categories[index],
-                index: index,
-              ),
+              itemBuilder: (_, index) {
+                final category = categories[index];
+                return GestureDetector(
+                  onTap: () => onCategorySelected(category),
+                  child: CategoryItem(
+                    category: category,
+                    index: index,
+                  ),
+                );
+              },
               itemCount: categories.length,
             ),
           ),
