@@ -21,9 +21,9 @@ class CategoriesGrid extends StatelessWidget {
         color: Color(0xFFC91C22),
       ),
       CategoryModel(
-        id: 'sports',
-        name: 'Sports',
-        imageName: 'ball',
+        id: 'business',
+        name: 'Business',
+        imageName: 'bussines',
         color: Color(0xFFC91C22),
       ),
       CategoryModel(

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:news/app_theme.dart';
+import 'package:news/models/news_response/news.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NewsItem extends StatelessWidget {
-  const NewsItem({super.key});
+  const NewsItem(
+    this.news, {
+    super.key,
+  });
+
+  final News news;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +22,9 @@ class NewsItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(5)),
-            child: Image.asset(
-              'assets/images/news.png',
+            child: Image.network(
+              news.urlToImage ??
+                  'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
               height: MediaQuery.of(context).size.height * 0.25,
               width: double.infinity,
               fit: BoxFit.fill,
@@ -25,7 +32,7 @@ class NewsItem extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'BBC news',
+            news.source?.name ?? '',
             style: titleSmallStyle?.copyWith(
               fontSize: 10,
               color: AppTheme.grey,
@@ -33,7 +40,7 @@ class NewsItem extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            "Why are football's biggest clubs starting a new tournament?",
+            news.title ?? '',
             style: titleSmallStyle?.copyWith(fontWeight: FontWeight.w500),
           ),
           Align(
