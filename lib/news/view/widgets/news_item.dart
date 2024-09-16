@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news/shared/app_theme.dart';
 import 'package:news/news/data/models/news.dart';
+import 'package:news/shared/widgets/loading_indicator.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NewsItem extends StatelessWidget {
@@ -22,9 +24,13 @@ class NewsItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(5)),
-            child: Image.network(
-              news.urlToImage ??
-                  'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+            child: CachedNetworkImage(
+              imageUrl: news.urlToImage ?? '',
+              placeholder: (_, __) => const LoadingIndicator(),
+              errorWidget: (_, __, ___) => const Icon(
+                Icons.image_not_supported_outlined,
+                size: 36,
+              ),
               height: MediaQuery.of(context).size.height * 0.25,
               width: double.infinity,
               fit: BoxFit.fill,
